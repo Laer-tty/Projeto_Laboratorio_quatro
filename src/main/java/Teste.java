@@ -1,12 +1,10 @@
-import com.model.cliente;
-import com.model.profissional;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import com.model.Aluguel;
+import com.model.Locacao;
 
-import java.sql.Date;
+import com.model.ServicoImovel;
+import jakarta.persistence.*;
 
-public class teste {
+public class Teste {
 
     public static void main(String[] args) {
 
@@ -53,8 +51,8 @@ public class teste {
         entityManager.merge(c1);
         entityManager.getTransaction().commit(); */
 
-        profissional p1= entityManager.find(profissional.class,2);
-        System.out.println(p1.getObs());
+        Aluguel al1 = entityManager.find(Aluguel.class, 4);
+        System.out.println(al1.getObs());
 
         entityManager.close();
         entityManagerFactory.close();
