@@ -53,6 +53,8 @@ public class teste {
         entityManager.merge(c1);
         entityManager.getTransaction().commit(); */
 
+        profissional p1= entityManager.find(profissional.class,2);
+        System.out.println(p1.getObs());
 
         entityManager.close();
         entityManagerFactory.close();
