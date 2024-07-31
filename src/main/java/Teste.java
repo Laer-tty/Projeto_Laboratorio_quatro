@@ -1,8 +1,10 @@
-import com.model.Aluguel;
-import com.model.Locacao;
+import com.model.*;
 
-import com.model.ServicoImovel;
+import com.repository.ProfissionalRepository;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class Teste {
 
@@ -51,8 +53,24 @@ public class Teste {
         entityManager.merge(c1);
         entityManager.getTransaction().commit(); */
 
-        Aluguel al1 = entityManager.find(Aluguel.class, 4);
-        System.out.println(al1.getObs());
+        ProfissionalRepository pr = new ProfissionalRepository();
+
+        Profissional profissional = Profissional.builder()
+                .id(6)
+                .nome("Marina Silva")
+                .profissao("Tecnico em TI")
+                .telefone1("987654555")
+                .valorHora(BigDecimal.valueOf(50.20))
+                .obs("Teste")
+                .build();
+
+        pr.save(profissional);
+
+        List<Profissional> profissionais = pr.findAll();
+        for (Profissional p : profissionais) {
+            System.out.println("Profissional ID: " + p.getId() + ", Nome: " + p.getNome());
+        }
+
 
         entityManager.close();
         entityManagerFactory.close();
